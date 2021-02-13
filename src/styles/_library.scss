@@ -1,0 +1,57 @@
+.library{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    height: 100%;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 46px 12px rgba(0,0,0, 0.5);
+    transition: all ease 0.2s;
+    transform: translateX(-110%);
+    opacity: 0;
+
+    h2{
+        padding: 1rem;
+    }
+    h3{
+        color: rgba($color: #3d3d3d, $alpha: 1.0);
+    }
+    h4{
+        color: rgba($color: #a09f9f, $alpha: 1.0);
+    }
+
+    img{
+        width: 30%;
+        max-width: 86.7px;
+        max-height: 86.7px;
+    }
+}
+
+.library.open{
+    transform: translateX(0);
+    opacity: 1;    
+}
+
+.library-item{
+    display: flex;    
+    flex-direction: row;
+    padding: 1rem 0rem 1rem 1rem;
+
+    &:hover{
+        background-color: rgba(203, 189, 216, 0.692);        
+        cursor: pointer;
+    }
+}
+
+.library-item.active{
+    background-color: rgba(202, 200, 204, 0.69);
+}
+
+.library-item-description{
+    padding-left: 1rem;
+}
+
+a{
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
