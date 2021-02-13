@@ -1,5 +1,5 @@
 .player{
-    min-height: 20vh;    
+    height: 20vh;    
     display: flex;
     flex-direction: column;  
     align-items: center; 
@@ -28,6 +28,6 @@
 .play-control{    
     display: flex; 
     align-items: center;  
-    justify-content: space-between; 
+    justify-content: space-around; 
     min-width: 50%;
 }
