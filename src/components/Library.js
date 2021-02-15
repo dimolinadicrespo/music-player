@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import LibraryItem from "./LibraryItem";
 import { SongsContext } from "./../hooks/songsContext.js";
 
-const Library = () => {
+const Library = ({imageRef}) => {
     const { songs, setSongs } = useContext(SongsContext);
     const { setCurrentSong, setPlay } = useContext(SongsContext);
     const { prevSong, setPrevSong } = useContext(SongsContext);
@@ -15,6 +15,10 @@ const Library = () => {
         setPrevSong(index);          
         setCurrentSong(songs[index]);
         setPlay(false);
+        setOpen(false);
+        imageRef.current.classList.remove('cover');
+        void imageRef.current.offsetWidth;
+        imageRef.current.classList.add('cover');
     };
 
     return (

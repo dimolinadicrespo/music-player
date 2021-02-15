@@ -4,7 +4,7 @@ import { faPlay, faPause,  faFastBackward, faFastForward, faAngleDoubleLeft, faA
 import {SongsContext} from './../hooks/songsContext';
 import {formatTime} from './../helpers';
 
-const Player = () => {
+const Player = ({imageRef}) => {
 
     const { currentSong : {name, cover, artist, audio, color, active}  } = useContext(SongsContext);
     const { play, setPlay  } = useContext(SongsContext);
@@ -14,11 +14,13 @@ const Player = () => {
 
     const playHandler = () => {        
         setPlay( play => !play);        
-        if ( !play ) {                        
+        if ( !play ) {  
+            imageRef.current.style.animationPlayState = "running";                      
             audioRef.current.play();
             return;
         }
-        audioRef.current.pause();
+        imageRef.current.style.animationPlayState = "paused";  
+        audioRef.current.pause();        
     }
 
     const changeAudioTime = (event) => {
