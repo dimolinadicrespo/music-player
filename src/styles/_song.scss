@@ -1,11 +1,13 @@
 .song-container{
-    height: 60vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
+    
+    @include theme-aware('background-color', 'color-song-background');
     
     header{
         width: 100%;
@@ -26,7 +28,7 @@
     }
 
     h1,h2{
-        color: rgba($color: #4e4c4c, $alpha: 1.0);
+        @include theme-aware('color', 'color-song-h1-h2');
     }    
 }
 
@@ -34,9 +36,8 @@
 
 .btn{
     font-size: 1rem;
-    background: none;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 16px 2px;
-    color: #4e4c4c;
+    @include theme-aware('color', 'color-song-btn-color');
     padding: 0.5rem;
     border-radius: 1rem;    
     border: 2px solid rgb(221, 221, 221);
@@ -52,9 +53,10 @@
     }    
 }
 
-.cover-play{
+.cover{
 
     animation: rotation 4s infinite linear;
+    animation-play-state: paused;
 
     @keyframes rotation {
 		from {

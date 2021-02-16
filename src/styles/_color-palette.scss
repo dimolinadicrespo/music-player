@@ -1,0 +1,32 @@
+$themes: (
+    light: (
+        color-library-text: black,
+        color-library-background: white,
+        color-library-h3: #3d3d3d,
+        color-library-h4: #4d4d4d,
+        color-library-library-item-hover: rgba(190, 169, 211, 0.69),
+        color-library-library-item-active: rgba(188, 154, 219, 0.69),
+        //Song
+        color-song-background: white,
+        color-song-h1-h2: #4e4c4c,
+        color-song-btn-color: #4e4c4c,
+        color-song-btn-background: #4e4c4c,
+        color-song-btn-hover: #4e4c4c,
+        color-song-btn-color-hover: white,
+    ),
+    dark: (
+        color-library-text: white,
+        color-library-background: #1F1F1F,
+        color-library-h3: #C2C2C2,
+        color-library-h4: #B2B2B2,
+        color-library-library-item-hover: rgba(190, 169, 211, 0.69),
+        color-library-library-item-active: rgba(188, 154, 219, 0.69),
+        //Song
+        color-song-background: black,
+        color-song-h1-h2: #B1B3B3,
+        color-song-btn-color: #B1B3B3,
+        color-song-btn-background: #1F1F1F,
+        color-song-btn-hover: #B1B3B3,
+        color-song-btn-color-hover: #000000,
+    )
+);

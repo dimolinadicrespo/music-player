@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+@import './color-palette';
+@import './mixins';
 @import './library';
 @import './switcher';
 @import './player';

@@ -1,4 +1,6 @@
 .library{
+    @include theme-aware('background-color', 'color-library-background');
+    @include theme-aware('color', 'color-library-text');
     position: absolute;
     top: 0;
     left: 0;
@@ -14,10 +16,10 @@
         padding: 1rem;
     }
     h3{
-        color: rgba($color: #3d3d3d, $alpha: 1.0);
+        @include theme-aware('color', 'color-library-h3');
     }
     h4{
-        color: rgba($color: #a09f9f, $alpha: 1.0);
+        @include theme-aware('color', 'color-library-h4');
     }
 
     img{
@@ -38,13 +40,14 @@
     padding: 1rem 0rem 1rem 1rem;
 
     &:hover{
-        background-color: rgba(203, 189, 216, 0.692);        
+        background-color: map-get(map-get($themes, 'light'), 'color-library-library-item-hover');        
         cursor: pointer;
     }
+
 }
 
 .library-item.active{
-    background-color: rgba(202, 200, 204, 0.69);
+    background-color: map-get(map-get($themes, 'light'), 'color-library-library-item-active');
 }
 
 .library-item-description{
