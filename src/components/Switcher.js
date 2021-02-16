@@ -4,6 +4,7 @@ import anime from "animejs";
 
 const Switcher = () => {
 
+    const themes = {true : 'light', false : 'dark'};
 
     const moonPath =
     "M18 27.5C18 42.6878 27.5 55 27.5 55C12.3122 55 0 42.6878 0 27.5C0 12.3122 12.3122 0 27.5 0C27.5 0 18 12.3122 18 27.5Z";
@@ -21,6 +22,10 @@ const Switcher = () => {
         morphTo(timeline, toggleStatus);
 
         toggleStatus = !toggleStatus;
+        
+        console.log("asdf");
+        document.documentElement.className = "";
+        document.documentElement.classList.add(`theme-${themes[!toggleStatus]}`);
     };
 
     const  morphTo = (timeline, toggler) => {
@@ -45,6 +50,7 @@ const Switcher = () => {
                 },
                 "-=700"
             );
+            console.log("aaaaaaa");
     }
 
     return (

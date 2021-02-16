@@ -7,8 +7,6 @@
     max-width: 1000px;
     margin: 0 auto;
     
-    @include theme-aware('background-color', 'color-song-background');
-    
     header{
         width: 100%;
         display: flex;
@@ -27,17 +25,19 @@
         border-radius: 50%;        
     }
 
-    h1,h2{
-        @include theme-aware('color', 'color-song-h1-h2');
-    }    
+    h1{
+        @include theme-aware('color', 'color-library-h3');
+    }  
+    h2{
+        @include theme-aware('color', 'color-library-h4');
+    }  
 }
-
-
 
 .btn{
     font-size: 1rem;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 16px 2px;
     @include theme-aware('color', 'color-song-btn-color');
+    @include theme-aware('background-color', 'color-song-btn-background');
     padding: 0.5rem;
     border-radius: 1rem;    
     border: 2px solid rgb(221, 221, 221);
@@ -45,11 +45,11 @@
     cursor: pointer;    
     &:hover{
         svg{
-            color: white;   
+            @include theme-aware('color', 'color-song-btn-icon');   
         }     
         box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px 1px;
         background-color: #4e4c4c;
-        color: white;      
+        @include theme-aware('color', 'color-song-btn-icon'); 
     }    
 }
 
