@@ -8,3 +8,7 @@ export const formatTime = (time) => {
         secs = `0${secs}`;        
     return `${mins}:${secs}`;        
 }
+
+export const calculatePercent = (valueOverTotal, total) => {
+    return Math.floor((valueOverTotal / total) * 100);
+}

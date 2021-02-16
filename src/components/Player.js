@@ -1,13 +1,13 @@
 import React, { useContext, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause,  faFastBackward, faFastForward, faAngleDoubleLeft, faAngleDoubleRight, faCompactDisc } from '@fortawesome/free-solid-svg-icons'
-import {SongsContext} from './../hooks/songsContext';
-import {formatTime} from './../helpers';
+import { SongsContext } from './../hooks/songsContext';
+import { formatTime, calculatePercent } from './../helpers';
 
 const Player = ({imageRef}) => {
 
     const { currentSong : {name, cover, artist, audio, color, active}  } = useContext(SongsContext);
-    const { play, setPlay  } = useContext(SongsContext);
+    const { play, setPlay } = useContext(SongsContext);
     const { currentSongProps, setCurrentSongProps  } = useContext(SongsContext);
 
     const audioRef = useRef(null);
@@ -30,7 +30,8 @@ const Player = ({imageRef}) => {
     const updateSongProps = () => {
         setCurrentSongProps({
             currentTime: audioRef.current.currentTime,
-            duration: audioRef.current.duration
+            duration: audioRef.current.duration,
+            percent: calculatePercent(audioRef.current.currentTime, audioRef.current.duration)
         });        
     }
 
@@ -38,18 +39,21 @@ const Player = ({imageRef}) => {
         <div className="player">
             <div className="time-control">
                 <p>{formatTime(currentSongProps.currentTime) }</p>
-                <input 
-                    type="range"
-                    min={0}
-                    max={currentSongProps.duration || 100}
-                    value={currentSongProps.currentTime || 0}
-                    onChange={event => changeAudioTime(event)}></input>
+                <div className="track-time" style={{backgroundImage: 'linear-gradient(to right, red , yellow)'}}>
+                    <input 
+                        type="range"
+                        min={0}
+                        max={currentSongProps.duration || 100}
+                        value={currentSongProps.currentTime || 0}
+                        onChange={event => changeAudioTime(event)}></input>
+                        <div style={{transform: `translateX(${currentSongProps.percent}%)`, backgroundImage: `linear-gradient(to right, red , yellow)`}} className="animation-time"></div>
+                </div>
                 <p>{formatTime(currentSongProps.duration)}</p>
             </div>
             <div className="play-control">
-                <FontAwesomeIcon size="2x" className="skip-back" icon={faFastBackward}/>                
-                <FontAwesomeIcon size="2x" className="play" icon={!play ? faPlay : faPause} onClick={() => playHandler() }/>              
-                <FontAwesomeIcon size="2x" className="skip-next" icon={faFastForward}/>
+                <FontAwesomeIcon size="2x" className="icon skip-back" icon={faFastBackward}/>                
+                <FontAwesomeIcon size="2x" className="icon play" icon={!play ? faPlay : faPause} onClick={() => playHandler() }/>              
+                <FontAwesomeIcon size="2x" className="icon skip-next" icon={faFastForward}/>
             </div>
             <audio 
                 ref={audioRef} 

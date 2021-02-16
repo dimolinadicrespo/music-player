@@ -9,17 +9,12 @@ const Song = ({imageRef}) => {
     const { play, setPlay  } = useContext(SongsContext);
     const { open, setOpen  } = useContext(SongsContext);
     
-    // const setAnimationDisk = () => {
-    //     if (play)
-    //     imageRef.cuanimation-play-state
-    // }
-
     return (
         <div className="song-container">          
             <header>
-                <a>Smusicfy</a>
+                <h2>Smusicfy</h2>
                 <button className="btn" onClick={() => setOpen(!open)}>
-                    <FontAwesomeIcon className="library-btn" icon={faCompactDisc} color={'#4e4c4c'}/> Library   
+                    <FontAwesomeIcon className="library-btn" icon={faCompactDisc}/> Library   
                 </button>
             </header>
             <img ref={imageRef} src={cover} alt={name} className={'cover'}/>
