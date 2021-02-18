@@ -9,14 +9,17 @@ const Library = ({imageRef}) => {
     const { open, setOpen } = useContext(SongsContext);
     const { currentSong } = useContext(SongsContext);
     
-    const updateCurrentSong = (index) => {    
+    const updateCurrentSong = (index) => {  
+        imageRef.current.classList.add('next-song');  
         songs[prevSong].active = false;
         songs[index].active = true;
-        setPrevSong(index);          
-        setCurrentSong(songs[index]);
-        setPlay(false);
-        setOpen(false);
-        imageRef.current.classList.remove('cover');
+        setTimeout(() => {
+            setPrevSong(index);          
+            setCurrentSong(songs[index]);
+            setPlay(false);
+            setOpen(false);
+        }, 250);
+        imageRef.current.classList.remove('cover');        
         void imageRef.current.offsetWidth;
         imageRef.current.classList.add('cover');
     };

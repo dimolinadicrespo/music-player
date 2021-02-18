@@ -1,4 +1,4 @@
-.song-container{
+.song-container {
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -6,64 +6,102 @@
     justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
-    
-    header{
+
+    header {
         width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
 
-        a:first-child { 
+        a:first-child {
             font-size: 24px;
             font-weight: bold;
         }
     }
 
-    img{
+    img {
         min-width: 150px;
         max-width: 350px;
-        border-radius: 50%;        
+        border-radius: 50%;
     }
 
-    h1{
-        @include theme-aware('color', 'color-library-h3');
-    }  
-    h2{
-        @include theme-aware('color', 'color-library-h4');
-    }  
+    h1 {
+        @include theme-aware("color", "color-library-h3");
+    }
+    h2 {
+        @include theme-aware("color", "color-library-h4");
+    }
 }
 
-.btn{
+.btn {
     font-size: 1rem;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 16px 2px;
-    @include theme-aware('color', 'color-song-btn-color');
-    @include theme-aware('background-color', 'color-song-btn-background');
+    @include theme-aware("color", "color-song-btn-color");
+    @include theme-aware("background-color", "color-song-btn-background");
     padding: 0.5rem;
-    border-radius: 1rem;    
+    border-radius: 1rem;
     border: 2px solid rgb(221, 221, 221);
     transition: all ease 0.1s;
-    cursor: pointer;    
-    &:hover{
-        svg{
-            @include theme-aware('color', 'color-song-btn-icon');   
-        }     
+    cursor: pointer;
+    &:hover {
+        svg {
+            @include theme-aware("color", "color-song-btn-icon");
+        }
         box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px 1px;
         background-color: #4e4c4c;
-        @include theme-aware('color', 'color-song-btn-icon'); 
-    }    
+        @include theme-aware("color", "color-song-btn-icon");
+    }
 }
 
-.cover{
-
+.cover {
     animation: rotation 4s infinite linear;
     animation-play-state: paused;
 
     @keyframes rotation {
-		from {
-				-webkit-transform: rotate(0deg);
-		}
-		to {
-				-webkit-transform: rotate(359deg);
-		}
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(359deg);
+        }
     }
+}
+
+.next-song {
+        -webkit-animation: flip-scale-down-ver 0.5s linear none;
+                animation: flip-scale-down-ver 0.5s linear none;
+
+        @-webkit-keyframes flip-scale-down-ver {
+            0% {
+            -webkit-transform: scale(1) rotateY(0);
+                    transform: scale(1) rotateY(0);
+                    opacity: 1;
+            }
+            50% {
+            -webkit-transform: scale(0.4) rotateY(-90deg);
+                    transform: scale(0.4) rotateY(-90deg);
+                    opacity: 0.5;
+            }
+            100% {
+            -webkit-transform: scale(1) rotateY(0deg);
+                    transform: scale(1) rotateY(0deg);
+                    opacity: 0.1;
+            }
+        }
+        @keyframes flip-scale-down-ver {
+            0% {
+            -webkit-transform: scale(1) rotateY(0);
+                    transform: scale(1) rotateY(0);
+            }
+            50% {
+            -webkit-transform: scale(0.4) rotateY(-90deg);
+                    transform: scale(0.4) rotateY(-90deg);
+            }
+            100% {
+            -webkit-transform: scale(1) rotateY(0deg);
+                    transform: scale(1) rotateY(0deg);
+            }
+        }
+  
+  
 }
