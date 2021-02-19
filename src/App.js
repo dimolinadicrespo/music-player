@@ -7,15 +7,18 @@ import Switcher from './components/Switcher';
 import { useRef } from 'react';
 
 
-function App() {   
+function App() {
+
     const imageRef = useRef(null);
+    const audioRef = useRef(null);
+    
     return (
         <div className="App">
             <SongsProvider>
                 <Switcher></Switcher>
                 <Song imageRef={imageRef}></Song>
-                <Player imageRef={imageRef}></Player>
-                <Library imageRef={imageRef}></Library>
+                <Player imageRef={imageRef} audioRef={audioRef}></Player>
+                <Library imageRef={imageRef} audioRef={audioRef}></Library>
             </SongsProvider>
         </div>
     );

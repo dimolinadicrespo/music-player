@@ -3,14 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faPause,  faFastBackward, faFastForward, faAngleDoubleLeft, faAngleDoubleRight, faCompactDisc } from '@fortawesome/free-solid-svg-icons'
 import { SongsContext } from './../hooks/songsContext';
 import { formatTime, calculatePercent } from './../helpers';
+import { useCounterSong } from './../hooks/useCounterSong';
 
-const Player = ({imageRef}) => {
+const Player = ({imageRef, audioRef}) => {
 
-    const { currentSong : {name, cover, artist, audio, color, active}  } = useContext(SongsContext);
-    const { play, setPlay } = useContext(SongsContext);
-    const { currentSongProps, setCurrentSongProps  } = useContext(SongsContext);
-
-    const audioRef = useRef(null);
+    const { currentSong : {name, cover, artist, audio, color, active}, songs, play, setPlay, currentSongProps, setCurrentSongProps, prevSong, setPrevSong} = useContext(SongsContext);
+    const[updateCurrentSong, nextSong, skipBackSong] = useCounterSong(imageRef, audioRef);   
 
     const playHandler = () => {        
         setPlay( play => !play);        
@@ -31,7 +29,8 @@ const Player = ({imageRef}) => {
         setCurrentSongProps({
             currentTime: audioRef.current.currentTime,
             duration: audioRef.current.duration,
-            percent: calculatePercent(audioRef.current.currentTime, audioRef.current.duration)
+            percent: calculatePercent(audioRef.current.currentTime, audioRef.current.duration),
+            color: color
         });        
     }
 
@@ -39,27 +38,27 @@ const Player = ({imageRef}) => {
         <div className="player">
             <div className="time-control">
                 <p>{formatTime(currentSongProps.currentTime) }</p>
-                <div className="track-time" style={{backgroundImage: 'linear-gradient(to right, red , yellow)'}}>
+                <div className="track-time" style={{backgroundImage: `linear-gradient(to right, ${color[1]}, ${color[0]})`}}>
                     <input 
                         type="range"
                         min={0}
                         max={currentSongProps.duration || 100}
                         value={currentSongProps.currentTime || 0}
                         onChange={event => changeAudioTime(event)}></input>
-                        <div style={{transform: `translateX(${currentSongProps.percent}%)`, backgroundImage: `linear-gradient(to right, red , yellow)`}} className="animation-time"></div>
+                        <div className="animation-time" style={{transform: `translateX(${currentSongProps.percent}%)`}}></div>
                 </div>
                 <p>{formatTime(currentSongProps.duration)}</p>
             </div>
             <div className="play-control">
-                <FontAwesomeIcon size="2x" className="icon skip-back" icon={faFastBackward}/>                
+                <FontAwesomeIcon size="2x" className="icon skip-back" icon={faFastBackward} onClick={() => skipBackSong()}/>                
                 <FontAwesomeIcon size="2x" className="icon play" icon={!play ? faPlay : faPause} onClick={() => playHandler() }/>              
-                <FontAwesomeIcon size="2x" className="icon skip-next" icon={faFastForward}/>
+                <FontAwesomeIcon size="2x" className="icon skip-next" icon={faFastForward} onClick={() => nextSong()}/>
             </div>
             <audio 
                 ref={audioRef} 
                 onTimeUpdate={updateSongProps}
                 onLoadedMetadata={updateSongProps}
-                onEnded={() => setPlay(false)}
+                onEnded={() => nextSong()}
                 src={audio}></audio>                          
         </div>
     );

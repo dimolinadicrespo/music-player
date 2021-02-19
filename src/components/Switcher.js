@@ -22,8 +22,7 @@ const Switcher = () => {
         morphTo(timeline, toggleStatus);
 
         toggleStatus = !toggleStatus;
-        
-        console.log("asdf");
+                
         document.documentElement.className = "";
         document.documentElement.classList.add(`theme-${themes[!toggleStatus]}`);
     };
